@@ -1,0 +1,19 @@
+docker exec broker kafka-topics --create --topic quickstart-avro-offsets --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:2181 ^
+	&& docker exec broker kafka-topics --create --topic quickstart-avro-config --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:2181 ^
+	&& docker exec broker kafka-topics --create --topic quickstart-avro-status --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:2181
+
+
+# CHECK topic
+docker exec broker kafka-topics --describe --zookeeper zookeeper:2181
+
+
+# POST SOURCE.json
+curl -d @"source.json" -H "Content-Type: application/json" -X POST http://localhost:8083/connectors
+
+# พัง
+# POST SINK HIVE.json
+curl -d @"source-sink-hive.json" -H "Content-Type: application/json" -X POST http://localhost:8083/connectors
+
+
+
+quickstart-avro-hive-sink

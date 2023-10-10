@@ -1,0 +1,18 @@
+{
+  "name": "quickstart-jdbc-source",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+    "tasks.max": 1,
+    "connection.url": "jdbc:mysql://mysql-source:3306/testdb",
+    "connection.user": "root",
+    "connection.password": "confluent",
+    "mode": "timestamp",
+    "timestamp.column.name": "modified",
+    "topic.prefix": "quickstart-jdbc-",
+    "poll.interval.ms": 1000,
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable":"true",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "true"
+  }
+}

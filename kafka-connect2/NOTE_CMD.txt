@@ -1,0 +1,44 @@
+# REMOVE CONFIG
+curl -X DELETE http://localhost:8083/connectors/quickstart-avro-mysql-sink
+
+# POST CONFIG
+curl -d @"source-sink-hive.json" -H "Content-Type: application/json" -X POST http://localhost:8083/connectors
+
+# CHECK STATUS
+curl -s -X GET http://localhost:8083/connectors/quickstart-avro-mysql-sink/status
+
+
+INSERT INTO test (name, email, department) VALUES ('11sheldon2123123', 'sheldon2@bigbang.com', 'engineer');
+
+# CONSUME
+
+kafka-console-consumer --bootstrap-server localhost:9092 --topic quickstart-jdbc-test --from-beginning 
+
+
+
+# CREATE NETWORK
+docker network create <NETWORK_NAME> 
+docker network create hive-network
+
+# check network
+docker inspect <container_name>
+docker inspect quickstart-mysql-sink
+docker inspect quickstart-mysql
+
+# check all IP
+docker network ls
+
+# PING
+docker exec -it <service_name> ping <IP>
+docker exec -it broker ping 172.20.0.2
+
+# run with specific network ????
+docker run -d -p 8088:80 --network="kafka-connect-master_default" --name quickstart-mysql-sink nginx:alpine
+
+### HADOOP
+name node web UI
+http://localhost:50070/ <- name node port
+
+ref
+# networking
+https://accesto.com/blog/docker-networks-explained-part-2/

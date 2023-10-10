@@ -1,0 +1,15 @@
+# RUN docker
+docker-compose up
+
+# RUN BASH TERMINAL AT HIVE SERVER
+docker exec -it hive-server /bin/bash
+
+# PATH SHARED at /employee
+cd ../
+cd employee/
+
+# RUN HQL SCRIPT
+hive -f customers_table.hql
+
+# HIVE TERMINAL
+hive

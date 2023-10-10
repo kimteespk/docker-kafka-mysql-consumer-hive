@@ -1,0 +1,9 @@
+db testdb
+table testsink
+id int
+name string
+
+create table testsource (
+    id INT,
+    name STRING
+)

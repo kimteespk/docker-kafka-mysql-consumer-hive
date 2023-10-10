@@ -1,0 +1,21 @@
+version: '2'
+services:
+  mysql-source:
+    container_name: mysql-source
+    hostname: mysql-source
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: confluent
+      MYSQL_USER: confluent
+      MYSQL_PASSWORD: confluent
+      MYSQL_DATABASE: classicmodels2
+    volumes:
+      - ./mysql_source_setup.sql:/tmp/db_setup.sql
+    ports:
+      - "3306:3306"
+    networks:
+      - hive-network
+    # command: "bash -c 'mysql -u confluent -pconfluent < /tmp/db_setup.sql'"
+networks:
+  hive-network:
+    external: true
